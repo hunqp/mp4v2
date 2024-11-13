@@ -1,0 +1,1 @@
+./configure --host=arm-linux-gnueabihf --prefix=/home/hunqp/SDK/mp4v2 CC=/home/hunqp/Toolchains/arm-anycloud-linux-uclibcgnueabi/bin/arm-anycloud-linux-uclibcgnueabi-gcc CXX=/home/hunqp/Toolchains/arm-anycloud-linux-uclibcgnueabi/bin/arm-anycloud-linux-uclibcgnueabi-g++ --disable-debug
