@@ -5,11 +5,16 @@
 
 #!/bin/bash
 
-HOST=arm-linux-gnueabihf
-INSTALL_DIR=/home/hunqp/Downloads/libmp4v2
+HOST=arm-anycloud_v7.3.0-linux-uclibcgnueabi
+INSTALL_DIR=libmp4v2
 
 export CC=arm-anycloud_v7.3.0-linux-uclibcgnueabi-gcc
 export CXX=arm-anycloud_v7.3.0-linux-uclibcgnueabi-g++
+export AR=arm-anycloud_v7.3.0-linux-uclibcgnueabi-ar
+export RANLIB=arm-anycloud_v7.3.0-linux-uclibcgnueabi-ranlib
+export STRIP=arm-anycloud_v7.3.0-linux-uclibcgnueabi-strip
+
+mkdir -p $INSTALL_DIR
 
 autoreconf -fi
 
