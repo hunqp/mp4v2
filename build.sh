@@ -6,7 +6,7 @@
 #!/bin/bash
 
 HOST=arm-anycloud_v7.3.0-linux-uclibcgnueabi
-INSTALL_DIR=libmp4v2
+INSTALL_DIR=$PWD/libmp4v2
 
 export CC=arm-anycloud_v7.3.0-linux-uclibcgnueabi-gcc
 export CXX=arm-anycloud_v7.3.0-linux-uclibcgnueabi-g++
