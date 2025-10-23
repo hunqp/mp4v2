@@ -236,13 +236,21 @@ bool MP4GetTrackH264LengthSize(
     MP4TrackId    trackId,
     uint32_t*     pLength );
 
-/* h265 information routines */
+
+/* h265 information routines *///cwm
+MP4V2_EXPORT
+bool MP4GetTrackH265ProfileLevel(
+    MP4FileHandle hFile,
+    MP4TrackId    trackId,
+    uint8_t*      pProfile,
+    uint8_t*      pLevel );
+
 MP4V2_EXPORT
 bool MP4GetTrackH265SeqPictHeaders(
     MP4FileHandle hFile,
     MP4TrackId    trackId,
-    uint8_t***    pVidHeader,
-    uint32_t**    pVidHeaderSize,
+	uint8_t***	  pVidHeader,
+	uint32_t**	  pVidHeaderSize,
     uint8_t***    pSeqHeaders,
     uint32_t**    pSeqHeaderSize,
     uint8_t***    pPictHeader,
@@ -253,6 +261,8 @@ bool MP4GetTrackH265LengthSize(
     MP4FileHandle hFile,
     MP4TrackId    trackId,
     uint32_t*     pLength );
+
+
 
 MP4V2_EXPORT
 MP4SampleId MP4GetTrackNumberOfSamples(

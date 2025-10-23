@@ -138,8 +138,7 @@ MP4TrackId MP4AddAudioTrack(
 MP4V2_EXPORT
 MP4TrackId MP4AddULawAudioTrack(
     MP4FileHandle hFile,
-    uint32_t timeScale,
-    MP4Duration sampleDuration);
+    uint32_t timeScale);
 
 /** Add alaw track to mp4 file.
  *
@@ -155,8 +154,7 @@ MP4TrackId MP4AddULawAudioTrack(
 MP4V2_EXPORT
 MP4TrackId MP4AddALawAudioTrack(
     MP4FileHandle hFile,
-    uint32_t timeScale,
-    MP4Duration sampleDuration);
+    uint32_t timeScale);
 
 MP4V2_EXPORT
 MP4TrackId MP4AddAC3AudioTrack(
@@ -248,42 +246,32 @@ MP4TrackId MP4AddVideoTrack(
     uint16_t      height,
     uint8_t       videoType DEFAULT(MP4_MPEG4_VIDEO_TYPE) );
 
-
-MP4V2_EXPORT
-void MP4SetH265VideoConfig(
-    MP4FileHandle hFile,
-    MP4TrackId trackId,
-    uint8_t generalProfileSpace,
-    uint8_t generalTierFlag,
-    uint8_t generalProfile,
-    uint32_t generalProfileCompatibilityFlags,
-    uint64_t generalConstraintIndicatorFlags,
-    uint8_t generalLevel,
-    uint32_t minSpatialSegmentation,
-    uint8_t parallelismType,
-    uint8_t chromaFormat,
-    uint8_t lumaBitDepth,
-    uint8_t chromaBitDepth,
-    uint16_t averageFrameRate,
-    uint8_t constantFrameRate,
-    uint8_t numTemporalLayers,
-    uint8_t temporalIdNested);
-
 MP4V2_EXPORT
 MP4TrackId MP4AddH265VideoTrack(
     MP4FileHandle hFile,
-    uint32_t timeScale,
-    MP4Duration sampleDuration,
-    uint16_t width,
-    uint16_t height,
-    uint8_t lengthSizeMinusOne );
+    uint32_t      timeScale,
+    MP4Duration   sampleDuration,
+    uint16_t      width,
+    uint16_t      height,
+    uint8_t       AVCProfileIndication,
+    uint8_t       profile_compat,
+    uint8_t       AVCLevelIndication,
+    uint8_t       sampleLenFieldSizeMinusOne );
+
+
+/**
+ * 设置h265的视频参数集
+ * @pSequence:为参数集数据，参数集数据至少包含包含vps sps pps的nalua
+ * @sequenceLen:对应数据的长度
+ * @陈文敏(chenwenmin)
+ */
+	
 
 MP4V2_EXPORT
-void MP4AddH265VideoParameterSet (
-    MP4FileHandle  hFile,
-    MP4TrackId     trackId,
-    const uint8_t* pVideo,
-    uint16_t       videoLen );
+void MP4AddH265VideoParameterSet (MP4FileHandle hFile,
+									 MP4TrackId trackId,
+									 const uint8_t *pSequence,
+									 uint16_t sequenceLen);
 
 MP4V2_EXPORT
 void MP4AddH265SequenceParameterSet(
@@ -488,18 +476,6 @@ bool MP4SetTrackDurationPerChunk(
     MP4TrackId    trackId,
     MP4Duration   duration );
 
-MP4V2_EXPORT
-bool MP4GetTrackSamplesPerChunk(
-    MP4FileHandle hFile,
-    MP4TrackId    trackId,
-    uint32_t*     samples );
-
-MP4V2_EXPORT
-bool MP4SetTrackSamplesPerChunk(
-    MP4FileHandle hFile,
-    MP4TrackId    trackId,
-    uint32_t      samples );
-
 /**
  *  @param hFile handle of file for operation.
  *  @param trackId id of track for operation.
@@ -510,6 +486,14 @@ MP4V2_EXPORT
 bool MP4AddIPodUUID(
     MP4FileHandle hFile,
     MP4TrackId    trackId );
+
+
+
+typedef enum {
+    H265_HEV1 = 0,
+	H265_HVCC,
+} MP4AtomType;
+
 
 /** @} ***********************************************************************/
 

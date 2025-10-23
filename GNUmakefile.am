@@ -11,6 +11,7 @@ libmp4v2_la_LDFLAGS = \
     -version-number $(PROJECT_version_major):$(PROJECT_version_minor):$(PROJECT_version_point) $(X_libmp4v2_la_LDFLAGS)
 
 libmp4v2_la_SOURCES = \
+    src/hevc.cpp                    	 \
     src/3gp.cpp                          \
     src/atom_ac3.cpp                     \
     src/atom_amr.cpp                     \
@@ -33,8 +34,6 @@ libmp4v2_la_SOURCES = \
     src/atom_hinf.cpp                    \
     src/atom_hnti.cpp                    \
     src/atom_href.cpp                    \
-    src/atom_hev1.cpp                    \
-    src/atom_hvcC.cpp                    \
     src/atom_mdat.cpp                    \
     src/atom_mdhd.cpp                    \
     src/atom_meta.cpp                    \
@@ -146,6 +145,7 @@ libmp4v2_la_SOURCES += \
     libplatform/impl.h                   \
     libplatform/io/File.cpp              \
     libplatform/io/File.h                \
+    libplatform/io/File_realtimestream.cpp \
     libplatform/io/FileSystem.cpp        \
     libplatform/io/FileSystem.h          \
     libplatform/number/random.h          \

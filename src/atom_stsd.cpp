@@ -54,8 +54,8 @@ MP4StsdAtom::MP4StsdAtom(MP4File &file)
     ExpectChildAtom("sawb", Optional, Many); // For AMR-WB
     ExpectChildAtom("s263", Optional, Many); // For H.263
     ExpectChildAtom("avc1", Optional, Many);
-    ExpectChildAtom("hev1", Optional, Many); // For H.265
-    ExpectChildAtom("hvc1", Optional, Many); // For H.265
+    ExpectChildAtom("hev1", Optional, Many);//cwm
+    ExpectChildAtom("hvc1", Optional, Many);//for h265 iphone
     ExpectChildAtom("alac", Optional, Many);
     ExpectChildAtom("text", Optional, Many);
     ExpectChildAtom("ac-3", Optional, Many);

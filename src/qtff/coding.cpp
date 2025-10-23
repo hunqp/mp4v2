@@ -33,7 +33,9 @@ namespace {
     public:
         StaticData()
         {
-            supportedCodings.insert( "avc1" );
+            supportedCodings.insert( "avc1" );			
+            supportedCodings.insert( "hev1" );//cwm
+            supportedCodings.insert( "hvc1" );//for h265 iphone         
             supportedCodings.insert( "mp4v" );
         }
 

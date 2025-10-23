@@ -276,6 +276,8 @@ const char* MP4NormalizeTrackType (const char* type)
     if (!strcasecmp(type, "vide")
             || !strcasecmp(type, "video")
             || !strcasecmp(type, "mp4v")
+            || !strcasecmp(type, "hev1")
+            || !strcasecmp(type, "hvc1")            
             || !strcasecmp(type, "avc1")
             || !strcasecmp(type, "s263")  // 3GPP H.263
             || !strcasecmp(type, "encv")) {

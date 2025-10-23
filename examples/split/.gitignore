@@ -1,0 +1,6 @@
+*.aac
+*.h264
+*.h265
+*.mp4
+src/*.o
+split

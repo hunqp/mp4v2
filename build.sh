@@ -7,12 +7,13 @@
 
 HOST=arm-anycloud_v7.3.0-linux-uclibcgnueabi
 INSTALL_DIR=$PWD/libmp4v2
+CROSS_COMPILER=$HOME/SDK/AnyCloud39AV100_SDK_V1.10/tools/arm-anycloud-linux-uclibcgnueabi-v7.3.0/bin/arm-anycloud_v7.3.0-linux-uclibcgnueabi-
 
-export CC=arm-anycloud_v7.3.0-linux-uclibcgnueabi-gcc
-export CXX=arm-anycloud_v7.3.0-linux-uclibcgnueabi-g++
-export AR=arm-anycloud_v7.3.0-linux-uclibcgnueabi-ar
-export RANLIB=arm-anycloud_v7.3.0-linux-uclibcgnueabi-ranlib
-export STRIP=arm-anycloud_v7.3.0-linux-uclibcgnueabi-strip
+export CC=${CROSS_COMPILER}gcc
+export CXX=${CROSS_COMPILER}g++
+export AR=${CROSS_COMPILER}ar
+export RANLIB=${CROSS_COMPILER}ranlib
+export STRIP=${CROSS_COMPILER}strip
 
 mkdir -p $INSTALL_DIR
 

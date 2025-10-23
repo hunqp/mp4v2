@@ -33,7 +33,7 @@ namespace mp4v2 { namespace impl {
 #ifndef ASSERT
 #   define ASSERT(expr) \
         if (!(expr)) { \
-            throw new Exception("assert failure: " LIBMPV42_STRINGIFY((expr)), __FILE__, __LINE__, __FUNCTION__ ); \
+            throw new Exception("assert failure: "LIBMPV42_STRINGIFY((expr)), __FILE__, __LINE__, __FUNCTION__ ); \
         }
 #endif
 
@@ -55,6 +55,7 @@ inline void* MP4Malloc(size_t size) {
     if (size == 0) return NULL;
     void* p = malloc(size);
     if (p == NULL && size > 0) {
+		log.errorf("MP4Malloc size=%d\n", size);
         throw new PlatformException("malloc failed",errno,__FILE__,__LINE__,__FUNCTION__);
     }
     return p;
