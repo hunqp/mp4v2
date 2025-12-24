@@ -493,7 +493,7 @@ Utility::process_impl()
         if( codes.find( code ) == codes.end() )
             continue;
 
-        switch( code ) {
+        switch( static_cast<unsigned int>(code) ) {
             case 'z':
                 _optimize = true;
                 break;

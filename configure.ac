@@ -4,16 +4,16 @@
 
 m4_include([project/project.m4sugar])
 
-m4_define([SVNINFO],m4_esyscmd([LANG=en svn info 2>/dev/null]))
+m4_define([SVNINFO],[])dnl
 
 changequote(<<,>>)dnl
-    m4_define(<<PRJ_repo_url>>,m4_bregexp(SVNINFO,<<^URL: *\(.+\)>>,<<\1>>))
-    m4_define(<<PRJ_repo_branch>>,m4_bregexp(PRJ_repo_url,<<\([^/]+\)$>>,<<\1>>))
-    m4_define(<<PRJ_repo_root>>,m4_bregexp(SVNINFO,<<^Repository Root: *\(.+\)>>,<<\1>>))
-    m4_define(<<PRJ_repo_uuid>>,m4_bregexp(SVNINFO,<<^Repository UUID: *\(.+\)>>,<<\1>>))
-    m4_define(<<PRJ_repo_rev>>,m4_bregexp(SVNINFO,<<^Last Changed Rev: *\(.+\)>>,<<\1>>))
-    m4_define(<<PRJ_repo_date>>,m4_bregexp(SVNINFO,<<^Last Changed Date: *\(.+\)>>,<<\1>>))
-    m4_define(<<PRJ_repo_type>>,ifelse(m4_bregexp(PRJ_repo_url,<</releases/>>),<<-1>>,<<developer>>,<<stable>>))
+    m4_define(<<PRJ_repo_url>>,<<https://github.com/hunqp/mp4v2>>)
+    m4_define(<<PRJ_repo_branch>>,<<2.0.0>>)
+    m4_define(<<PRJ_repo_root>>,<<https://github.com/hunqp/mp4v2>>)
+    m4_define(<<PRJ_repo_uuid>>,<<>>)
+    m4_define(<<PRJ_repo_rev>>,<<0>>)
+    m4_define(<<PRJ_repo_date>>,<<>>)
+    m4_define(<<PRJ_repo_type>>,<<stable>>)
 changequote([,])dnl
 
 m4_define([PRJ_version_hex],m4_format([0x%04x%02x%02x],PRJ_version_major,PRJ_version_minor,PRJ_version_point))

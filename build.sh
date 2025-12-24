@@ -5,6 +5,12 @@
 
 #!/bin/bash
 
+sed -i
+
+# HOST=mipsel-linux-uclibc
+# INSTALL_DIR=$PWD/libmp4v2
+# CROSS_COMPILER=$HOME/Toolchains/mips-xburst1-uclibc-ng1.0.50-toolchain-b6.3.1/bin/mipsel-linux-uclibc-
+
 HOST=arm-anycloud_v7.3.0-linux-uclibcgnueabi
 INSTALL_DIR=$PWD/libmp4v2
 CROSS_COMPILER=$HOME/SDK/AnyCloud39AV100_SDK_V1.10/tools/arm-anycloud-linux-uclibcgnueabi-v7.3.0/bin/arm-anycloud_v7.3.0-linux-uclibcgnueabi-
