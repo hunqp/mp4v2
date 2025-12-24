@@ -7,13 +7,13 @@
 
 sed -i
 
-# HOST=mipsel-linux-uclibc
-# INSTALL_DIR=$PWD/libmp4v2
-# CROSS_COMPILER=$HOME/Toolchains/mips-xburst1-uclibc-ng1.0.50-toolchain-b6.3.1/bin/mipsel-linux-uclibc-
-
-HOST=arm-anycloud_v7.3.0-linux-uclibcgnueabi
+HOST=arm-rockchip830-linux-uclibcgnueabihf
 INSTALL_DIR=$PWD/libmp4v2
-CROSS_COMPILER=$HOME/SDK/AnyCloud39AV100_SDK_V1.10/tools/arm-anycloud-linux-uclibcgnueabi-v7.3.0/bin/arm-anycloud_v7.3.0-linux-uclibcgnueabi-
+CROSS_COMPILER=$HOME/SDK/Rockchip/T36X-nand/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-
+
+# HOST=arm-anycloud_v7.3.0-linux-uclibcgnueabi
+# INSTALL_DIR=$PWD/libmp4v2
+# CROSS_COMPILER=$HOME/SDK/AnyCloud39AV100_SDK_V1.10/tools/arm-anycloud-linux-uclibcgnueabi-v7.3.0/bin/arm-anycloud_v7.3.0-linux-uclibcgnueabi-
 
 export CC=${CROSS_COMPILER}gcc
 export CXX=${CROSS_COMPILER}g++

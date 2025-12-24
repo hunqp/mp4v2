@@ -18,7 +18,7 @@ public:
 private:
     bool         _seekg;
     bool         _seekp;
-    int          _fd;
+    std::fstream _fstream;
 	
 	//////////
 public:
@@ -42,92 +42,69 @@ StandardFileProvider::StandardFileProvider()
 bool
 StandardFileProvider::open( std::string name, Mode mode )
 {
-    int flags = 0;
-
-    switch (mode) {
+    ios::openmode om = ios::binary;
+    switch( mode ) {
+        case MODE_UNDEFINED:
         case MODE_READ:
         default:
-            flags = O_RDONLY;
+            om |= ios::in;
             _seekg = true;
             _seekp = false;
             break;
 
         case MODE_MODIFY:
-            flags = O_RDWR;
+            om |= ios::in | ios::out;
             _seekg = true;
             _seekp = true;
             break;
 
         case MODE_CREATE:
-            flags = O_RDWR | O_CREAT | O_TRUNC;
+            om |= ios::in | ios::out | ios::trunc;
             _seekg = true;
             _seekp = true;
+            unlink(name.c_str());
             break;
     }
 
-    _fd = ::open(name.c_str(), flags, 0777);
-    return (_fd < 0);
+    _fstream.open( name.c_str(), om );
+    return _fstream.fail();
 }
 
 bool
 StandardFileProvider::seek( Size pos )
 {
-
-    if (_fd < 0)
-        return true;
-
-    off_t ret = ::lseek(_fd, static_cast<off_t>(pos), SEEK_SET);
-    return (ret == (off_t)-1);
+    if( _seekg )
+        _fstream.seekg( pos, ios::beg );
+    if( _seekp )
+        _fstream.seekp( pos, ios::beg );
+    return _fstream.fail();
 }
 
 bool
 StandardFileProvider::read( void* buffer, Size size, Size& nin, Size maxChunkSize )
 {
-    if (_fd < 0)
+    _fstream.read( (char*)buffer, size );
+    if( _fstream.fail() )
         return true;
-
-    ssize_t r = ::read(_fd, buffer, size);
-    if (r < 0)
-        return true;
-
-    nin = static_cast<Size>(r);
+    nin = _fstream.gcount();
     return false;
 }
 
 bool
 StandardFileProvider::write( const void* buffer, Size size, Size& nout, Size maxChunkSize )
 {
-    if (_fd < 0)
+    _fstream.write( (const char*)buffer, size );
+    if( _fstream.fail() )
         return true;
-
-    const char* p = static_cast<const char*>(buffer);
-    Size total = 0;
-
-    while (total < size) {
-        ssize_t w = ::write(_fd, p + total, size - total);
-        if (w < 0) {
-            if (errno == EINTR)
-                continue;
-            return true;
-        }
-        total += static_cast<Size>(w);
-    }
-
-    nout = total;
-
-    posix_fadvise(_fd, 0, 0, POSIX_FADV_DONTNEED);
-
+    nout = size;
     return false;
 }
 
 bool
 StandardFileProvider::close()
 {
-    if (_fd >= 0) {
-        ::close(_fd);
-        _fd = -1;
-    }
-    return false;
+    _fstream.close();
+    return _fstream.fail();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
